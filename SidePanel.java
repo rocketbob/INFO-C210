@@ -18,7 +18,7 @@ public class SidePanel extends JPanel {
 		radioButtonGroup.add(oneMonthRadioButton);
 		radioButtonGroup.add(threeMonthsRadioButton);
 		radioButtonGroup.add(twelveMonthsRadioButton);
-		setBackground(Color.BLUE);
+		// setBackground(Color.BLUE);
 		add(oneMonthRadioButton);
 		add(threeMonthsRadioButton);
 		add(twelveMonthsRadioButton);
