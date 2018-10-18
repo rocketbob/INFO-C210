@@ -5,9 +5,14 @@ import javax.swing.JPanel;
 
 public class DayPanel extends JPanel {
 
-	public DayPanel(String string) {
+	public DayPanel(String string, int border, int color) {
 		JLabel day = new JLabel(string);
-		this.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 1));
+		if (border > 0) {
+		this.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, border));
+		}
+		if (color == 1) {
+			this.setBackground(Color.GRAY);
+		}
 		this.add(day);
 	}
 }
