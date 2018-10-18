@@ -2,22 +2,27 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Test extends JFrame implements ItemListener {
 	JPanel calendarContainer;
-
-	int offset = 5;  // determines where days start on calendar
-	int numDays = 28;  // number of days in a month
 	private static final int GRAY = 1;
+	static LocalDate localDate = LocalDate.now();
+	static int currentYear = Integer.parseInt(DateTimeFormatter.ofPattern("yyy").format(localDate));
+    static int currentMonth = Integer.parseInt(DateTimeFormatter.ofPattern("MM").format(localDate));
+    static int currentDay = Integer.parseInt(DateTimeFormatter.ofPattern("dd").format(localDate));
+	
 	public Test () {
+		
 		calendarContainer = new JPanel();
 		SidePanel sidePanel = new SidePanel();
 		setTitle("Test Calendar Object");
         calendarContainer.setLayout(new BorderLayout());
-        calendarContainer.add(new CalendarPanel(1, 0), BorderLayout.CENTER);
+        calendarContainer.add(new CalendarPanel(currentMonth-1, 0), BorderLayout.CENTER);
         setLayout(new BorderLayout());
 		sidePanel.setPreferredSize(new Dimension(200,800));
 		sidePanel.setVisible(true);
@@ -42,14 +47,14 @@ public class Test extends JFrame implements ItemListener {
 		calendarContainer.removeAll();
 		if(SidePanel.oneMonthRadioButton.isSelected()) {
 			calendarContainer.setLayout(new BorderLayout());
-			calendarContainer.add(new CalendarPanel(8, 0), BorderLayout.CENTER);
+			calendarContainer.add(new CalendarPanel(currentMonth-1, 0), BorderLayout.CENTER);
 			calendarContainer.updateUI();
 		}
 		if(SidePanel.threeMonthsRadioButton.isSelected()) {
 			//calendarContainer.removeAll();
 			calendarContainer.setLayout(new GridLayout(2,2));
 			for(int i = 0; i < 3; i++) {
-			calendarContainer.add(new CalendarPanel(i, 2));
+			calendarContainer.add(new CalendarPanel(i,2));
 			}
 			calendarContainer.add(new DayPanel("",0,GRAY));
 			calendarContainer.updateUI();
@@ -57,7 +62,7 @@ public class Test extends JFrame implements ItemListener {
 		if(SidePanel.twelveMonthsRadioButton.isSelected()) {
 			calendarContainer.setLayout(new GridLayout(4,3));
 			for(int i = 0;i < 12; i++) {  
-			calendarContainer.add(new CalendarPanel(i, 2));
+			calendarContainer.add(new CalendarPanel(i,2));
 			}
 			calendarContainer.updateUI();
 		}

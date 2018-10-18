@@ -14,6 +14,7 @@ public class CalendarPanel extends JPanel {
 	int tailSet;
 	private static final int GRAY = 1;
 	private static final int LIGHTGRAY = 0;
+	private static final int YELLOW = 2;
 
 	// problem with September and December when offset is 6 it dosen't work?
 	public CalendarPanel (int month, int border) {
@@ -27,22 +28,25 @@ public class CalendarPanel extends JPanel {
 		this.tailSet = 42 - (monthNumDays[month] + monthOffsets[month]); // figue up number of trailing tiles needed
 		tileContainer.setLayout(new GridLayout(7,7));
 		tileContainer.setBackground(Color.GRAY);
-		 System.out.println(monthsOfYear[month] + " -> " + monthNumDays[month] + "+" + monthOffsets[month] + "=" + tailSet + " ");
-
+		
 		if (border > 0) {
 			tileContainer.setBorder(BorderFactory.createLineBorder(Color.GRAY, border));
 		}
 		setLayout(new BorderLayout());
-		for(int i=0;i<7;i++) {         // creates a panel for day heading
+		for(int i=0;i<7;i++) {         // creates panels for day headings
 			tileContainer.add(new DayPanel(daysOfWeek[i],1,LIGHTGRAY));
 		}
 		for(int i=0;i<monthOffsets[month];i++) {    // creates blank panels for spacers
 			tileContainer.add(new DayPanel("",1,LIGHTGRAY));
 		}
 		for(int i=1;i<monthNumDays[month]+1;i++) {  // creates a panel for each day
-			tileContainer.add(new DayPanel("" + i,1,LIGHTGRAY));
+			if (Test.currentDay == i && Test.currentMonth == month+1) {
+			tileContainer.add(new DayPanel("" + i,1,YELLOW));	
+			} else {
+			tileContainer.add(new DayPanel("" + i,1,LIGHTGRAY));	
+			}
 		}
-		for(int i = 0; i < tailSet; i++) {  // creates panels for any spaces left
+		for(int i = 0; i < tailSet; i++) {  // creates panels for any spaces left at the end
 			tileContainer.add(new DayPanel("",0,GRAY));
 		}
 		add(headingPanel, BorderLayout.PAGE_START);
