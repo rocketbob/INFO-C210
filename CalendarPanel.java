@@ -9,15 +9,13 @@ import javax.swing.JPanel;
 public class CalendarPanel extends JPanel {
 	private String[] daysOfWeek = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
 	private String[] monthsOfYear = {"January","February","March","April","May","June","July","Auguest","September","October","November","December"};
-	int[] monthOffsets = {1,4,4,0,2,5,0,3,6,1,4,6};
-	int[] monthNumDays = {31,28,31,30,31,30,31,31,30,31,30,31};
 	int tailSet;
 	private static final int GRAY = 1;
 	private static final int LIGHTGRAY = 0;
 	private static final int YELLOW = 2;
 
 	// problem with September and December when offset is 6 it dosen't work?
-	public CalendarPanel (int month, int border) {
+	public CalendarPanel (int month, int border, GregorianCalendar gCalendar) {
 		JPanel tileContainer = new JPanel();
 		JPanel headingPanel = new JPanel();
 		JLabel monthLabel = new JLabel(monthsOfYear[month]);
@@ -25,7 +23,7 @@ public class CalendarPanel extends JPanel {
 		monthLabel.setHorizontalAlignment(JLabel.CENTER);
 		headingPanel.setBackground(Color.GRAY);
 		headingPanel.add(monthLabel);
-		this.tailSet = 42 - (monthNumDays[month] + monthOffsets[month]); // figue up number of trailing tiles needed
+		this.tailSet = 42 - (gCalendar.monthNumDays[month] + gCalendar.monthOffsets[month]); // figue up number of trailing tiles needed
 		tileContainer.setLayout(new GridLayout(7,7));
 		tileContainer.setBackground(Color.GRAY);
 		
@@ -36,15 +34,16 @@ public class CalendarPanel extends JPanel {
 		for(int i=0;i<7;i++) {         // creates panels for day headings
 			tileContainer.add(new DayPanel(daysOfWeek[i],1,LIGHTGRAY));
 		}
-		for(int i=0;i<monthOffsets[month];i++) {    // creates blank panels for spacers
+		for(int i=0;i<gCalendar.monthOffsets[month];i++) {    // creates blank panels for spacers
 			tileContainer.add(new DayPanel("",1,LIGHTGRAY));
 		}
-		for(int i=1;i<monthNumDays[month]+1;i++) {  // creates a panel for each day
-			if (Test.currentDay == i && Test.currentMonth == month+1) {
+		for(int i=1;i<gCalendar.monthNumDays[month]+1;i++) {  // creates a panel for each day
+			if (gCalendar.currentDay == i && gCalendar.currentMonth == month+1) {
 			tileContainer.add(new DayPanel("" + i,1,YELLOW));	
 			} else {
-			tileContainer.add(new DayPanel("" + i,1,LIGHTGRAY));	
+			tileContainer.add(new DayPanel("" + i,1,LIGHTGRAY));
 			}
+			
 		}
 		for(int i = 0; i < tailSet; i++) {  // creates panels for any spaces left at the end
 			tileContainer.add(new DayPanel("",0,GRAY));

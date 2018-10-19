@@ -11,18 +11,20 @@ import javax.swing.JPanel;
 public class Test extends JFrame implements ItemListener {
 	JPanel calendarContainer;
 	private static final int GRAY = 1;
-	static LocalDate localDate = LocalDate.now();
-	static int currentYear = Integer.parseInt(DateTimeFormatter.ofPattern("yyy").format(localDate));
-    static int currentMonth = Integer.parseInt(DateTimeFormatter.ofPattern("MM").format(localDate));
-    static int currentDay = Integer.parseInt(DateTimeFormatter.ofPattern("dd").format(localDate));
+	int yearOfInterest = 2006;  // this will set the year for the calendar
+	                            // for some reason it is not working, stuck on 2018
+    GregorianCalendar gCalendar = new GregorianCalendar(yearOfInterest);
+    private static final int BORDER = 2;
+    private static final int NOBORDER = 0;
+    
+    
 	
 	public Test () {
-		
 		calendarContainer = new JPanel();
 		SidePanel sidePanel = new SidePanel();
 		setTitle("Test Calendar Object");
         calendarContainer.setLayout(new BorderLayout());
-        calendarContainer.add(new CalendarPanel(currentMonth-1, 0), BorderLayout.CENTER);
+        calendarContainer.add(new CalendarPanel(gCalendar.currentMonth-1, NOBORDER, gCalendar), BorderLayout.CENTER);
         setLayout(new BorderLayout());
 		sidePanel.setPreferredSize(new Dimension(200,800));
 		sidePanel.setVisible(true);
@@ -47,14 +49,14 @@ public class Test extends JFrame implements ItemListener {
 		calendarContainer.removeAll();
 		if(SidePanel.oneMonthRadioButton.isSelected()) {
 			calendarContainer.setLayout(new BorderLayout());
-			calendarContainer.add(new CalendarPanel(currentMonth-1, 0), BorderLayout.CENTER);
+			calendarContainer.add(new CalendarPanel(gCalendar.currentMonth-1, NOBORDER, gCalendar), BorderLayout.CENTER);
 			calendarContainer.updateUI();
 		}
 		if(SidePanel.threeMonthsRadioButton.isSelected()) {
 			//calendarContainer.removeAll();
 			calendarContainer.setLayout(new GridLayout(2,2));
 			for(int i = 0; i < 3; i++) {
-			calendarContainer.add(new CalendarPanel(i,2));
+			calendarContainer.add(new CalendarPanel(i,BORDER, gCalendar));
 			}
 			calendarContainer.add(new DayPanel("",0,GRAY));
 			calendarContainer.updateUI();
@@ -62,7 +64,7 @@ public class Test extends JFrame implements ItemListener {
 		if(SidePanel.twelveMonthsRadioButton.isSelected()) {
 			calendarContainer.setLayout(new GridLayout(4,3));
 			for(int i = 0;i < 12; i++) {  
-			calendarContainer.add(new CalendarPanel(i,2));
+			calendarContainer.add(new CalendarPanel(i,BORDER, gCalendar));
 			}
 			calendarContainer.updateUI();
 		}
