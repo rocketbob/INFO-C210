@@ -38,7 +38,7 @@ public class CalendarPanel extends JPanel {
 			tileContainer.add(new DayPanel("",1,LIGHTGRAY));
 		}
 		for(int i=1;i<gCalendar.monthNumDays[month]+1;i++) {  // creates a panel for each day
-			if (gCalendar.currentDay == i && gCalendar.currentMonth == month+1) {
+			if (gCalendar.currentDay == i && gCalendar.currentMonth == month+1 && gCalendar.currentYear == gCalendar.yearSelected) { 
 			tileContainer.add(new DayPanel("" + i,1,YELLOW));	
 			} else {
 			tileContainer.add(new DayPanel("" + i,1,LIGHTGRAY));

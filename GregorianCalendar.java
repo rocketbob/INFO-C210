@@ -35,8 +35,8 @@ public class GregorianCalendar {
 	public void setOffsets() {
 		int numDays = 0;
 		int tempYear = 0;  // temporary storage for algorithm
-		int refYear = 2017;  // we use this year because the offset is 0
-		int refOffset = 0;
+		int refYear = 2017;  // we use this year because the offset is 0 (Jan 1 starts on Sunday)
+		int refOffset = 0;  // this value will be the Jan 1 offset for what ever year
 		boolean yearIsLower = false;
 
 		int absoluteValue = Math.abs(refYear - yearSelected);  // tells how many years from reference 2018
@@ -66,7 +66,7 @@ public class GregorianCalendar {
                 }                          // in that case, do nothing.
         	}
 		// make the offsets for each month for the rest of the year
-		monthOffsets[0] = 1; // this is the January offset, a reference for the rest
+		monthOffsets[0] = refOffset; // this is the January offset, a reference for the rest
 		for (int i = 0; i < 11; i++) {  // leap years already accounted for by this point
 			monthOffsets[i+1] = (monthOffsets[i] + monthNumDays[i]) % 7;
 		}
