@@ -12,7 +12,6 @@ public class Test extends JFrame implements ItemListener {
 	JPanel calendarContainer;
 	private static final int GRAY = 1;
 	int yearSelected = 2018;  // this will set the year for the calendar
-	                            // for some reason it is not working, stuck on 2018
     GregorianCalendar gCalendar = new GregorianCalendar(yearSelected);
     private static final int BORDER = 2;
     private static final int NOBORDER = 0;
