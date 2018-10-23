@@ -41,16 +41,15 @@ public class Test extends JFrame implements ItemListener {
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
+		// item listeners
 		SidePanel.oneMonthRadioButton.addItemListener(this);
 		SidePanel.threeMonthsRadioButton.addItemListener(this);
 		SidePanel.twelveMonthsRadioButton.addItemListener(this);
+		SidePanel.monthListComboBox.addItemListener(this);
+		// action listeners
 		SidePanel.forward.addActionListener(fbHandler);
 		SidePanel.reverse.addActionListener(rbHandler);
-		SidePanel.monthListComboBox.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-            System.out.println(SidePanel.monthListComboBox.getSelectedItem());
-			}
-		});
+		
 	}
 
 	public static void main(String[] args) {
@@ -59,18 +58,21 @@ public class Test extends JFrame implements ItemListener {
 
 	public static void threeCalendarView() {
 		calendarContainer.setLayout(new GridLayout(2,2));
-		for(int i = 0; i < 3; i++) {		
-		calendarContainer.add(new CalendarPanel(monthSelected + i,BORDER, new GregorianCalendar(Test.yearSelected)));
+		for(int i = 0; i < 3; i++) {
+			if(monthSelected + i == 12) {
+				calendarContainer.add(new CalendarPanel(0,BORDER, new GregorianCalendar(Test.yearSelected)));	
+			} else if(monthSelected + i == 13) {
+				calendarContainer.add(new CalendarPanel(1,BORDER, new GregorianCalendar(Test.yearSelected)));	
+			} else {
+				calendarContainer.add(new CalendarPanel(monthSelected + i,BORDER, new GregorianCalendar(Test.yearSelected)));
+			}
 		}
 		calendarContainer.add(new DayPanel("",0,GRAY));
-		calendarContainer.updateUI();
-
 	}
 	
 	public static void oneCalendarView() {
 		calendarContainer.setLayout(new BorderLayout());
 		calendarContainer.add(new CalendarPanel(monthSelected, NOBORDER, new GregorianCalendar(Test.yearSelected)), BorderLayout.CENTER);
-		calendarContainer.updateUI();
 	}
 	
 	public static void twelveCalendarView() {
@@ -78,7 +80,6 @@ public class Test extends JFrame implements ItemListener {
 		for(int i = 0;i < 12; i++) {  
 		calendarContainer.add(new CalendarPanel(i,BORDER, new GregorianCalendar(Test.yearSelected)));
 		}
-		calendarContainer.updateUI();
 	}
 	
 	public static void writeCalendar() {
@@ -94,7 +95,8 @@ public class Test extends JFrame implements ItemListener {
 			twelveCalendarView();
 			break;
 		}
-		
+		calendarContainer.updateUI();
+		System.out.println("Updating UI");  //temp
 	}
 	
 	@Override
@@ -107,16 +109,27 @@ public class Test extends JFrame implements ItemListener {
 		}
 		if(SidePanel.twelveMonthsRadioButton.isSelected()) {
 			viewSelected = 2;
-		}
+		} 
+		selectMonth();
 		writeCalendar();
+	}
+
+	public static void selectMonth() {
+		for(int i = 0; i < SidePanel.monthList.length ; i++) {
+			if(SidePanel.monthList[i].equals(SidePanel.monthListComboBox.getSelectedItem())) {
+				monthSelected = i;
+				System.out.println("Changed Monthyly selection to " + monthSelected); //temp
+			}
+		}
 	}
 }
 
 class ForwardButtonHandler implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Test.yearSelected++;
-        SidePanel.yearDisplay.setText("" + Test.yearSelected);
-        Test.writeCalendar();
+		SidePanel.yearDisplay.setText("" + Test.yearSelected);
+		Test.writeCalendar();
+		System.out.println("Forward one year");  //temp
 	}
 }
 
@@ -125,5 +138,6 @@ class ReverseButtonHandler implements ActionListener {
 		Test.yearSelected--;
 		SidePanel.yearDisplay.setText("" + Test.yearSelected);
 		Test.writeCalendar();
+		System.out.println("Reverse one year");  //temp
 	}
 }

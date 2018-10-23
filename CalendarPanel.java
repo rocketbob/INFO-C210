@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 public class CalendarPanel extends JPanel {
 	private String[] daysOfWeek = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
-	private String[] monthsOfYear = {"January","February","March","April","May","June","July","Auguest","September","October","November","December"};
+	// private String[] monthsOfYear = {"January","February","March","April","May","June","July","August","September","October","November","December"};
 	int tailSet;
 	private static final int GRAY = 1;
 	private static final int LIGHTGRAY = 0;
@@ -18,7 +18,7 @@ public class CalendarPanel extends JPanel {
 	public CalendarPanel (int month, int border, GregorianCalendar gCalendar) {
 		JPanel tileContainer = new JPanel();
 		JPanel headingPanel = new JPanel();
-		JLabel monthLabel = new JLabel(monthsOfYear[month]);
+		JLabel monthLabel = new JLabel(SidePanel.monthList[month]);
 		monthLabel.setForeground(Color.WHITE);
 		monthLabel.setHorizontalAlignment(JLabel.CENTER);
 		headingPanel.setBackground(Color.GRAY);

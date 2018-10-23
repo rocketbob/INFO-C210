@@ -2,12 +2,11 @@
 
 Project files for INFO-C211 Calendar assignment.
 
-monthSelected feature still needs to be finished in Test.java.
+bug: eventlisteners in Test.java fire twice, whenever a radio button is selected
+or the drop down menu is selected. The causes the program to double it's work. Inside Test.java there are System.out.Print statements that show this.  The program works fine but in the real world this would be unacceptable overhead.
 
-		SidePanel.monthListComboBox.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-            System.out.println(SidePanel.monthListComboBox.getSelectedItem());
-			}
-		});
-		
-		needs to change value of "monthSelected" variable in Test.java
+code efficiency issue:  The GregorianCalendar object is rebuilt every time the user
+uses a widget.  For this little program the overhead is not noticeable but for a larger
+program it would be bad.  It should only rebuild the object whenever the year is 
+changed, not when other months are selected, or the month view changed.
+

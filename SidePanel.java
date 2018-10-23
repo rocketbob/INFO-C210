@@ -20,9 +20,10 @@ public class SidePanel extends JPanel {
 	JPanel sideGrid; // this is the main grid to hold and organize other panels in sidePanel
 	static JLabel yearDisplay;
 	static JComboBox<String> monthListComboBox;
-	String[] monthList;
+	static String[] monthList;
 	static JButton forward;
 	static JButton reverse;
+
 	
 	ButtonGroup radioButtonGroup;
 	
@@ -55,7 +56,7 @@ public class SidePanel extends JPanel {
 		radioButtonGroup.add(oneMonthRadioButton);
 		radioButtonGroup.add(threeMonthsRadioButton);
 		radioButtonGroup.add(twelveMonthsRadioButton);
-		radioPanel.add(monthSelect);
+		radioPanel.add(monthSelect);  // label
 		radioPanel.add(oneMonthRadioButton);
 		radioPanel.add(threeMonthsRadioButton);
 		radioPanel.add(twelveMonthsRadioButton);
