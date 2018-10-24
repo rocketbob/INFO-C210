@@ -27,7 +27,7 @@ public class GregorianCalendar {
 
 	public void setMonthNumDays() {
 		if (isLeapYear(yearSelected)) {
-			this.monthNumDays[1] = 29;
+			this.monthNumDays[1] = 29;  // if it is a leap year change Feb number of days to 29
 		} 
 	}
 	
@@ -75,11 +75,11 @@ public class GregorianCalendar {
 	// determine if it is a leap year
 	public boolean isLeapYear(int choseYear) {
 		leapYear = false;
-		if(choseYear % 4 == 0) {
+		if(choseYear % 4 == 0) { // if the year is divisible by 4 it is a leap year
 			leapYear = true;
-			if(choseYear % 100 == 0) {
+			if(choseYear % 100 == 0) {  // if the year is divisible by 100 it is not a leap year
 				leapYear = false;
-				if(choseYear %400 == 0) {
+				if(choseYear %400 == 0) {  // if the year is divisible by 400 it is a leap year
 					leapYear = true;
 				}
 			}
