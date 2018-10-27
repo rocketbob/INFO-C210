@@ -10,6 +10,7 @@ import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+// panel for side controls
 public class SidePanel extends JPanel {
 	static JRadioButton oneMonthRadioButton;
 	static JRadioButton threeMonthsRadioButton;
@@ -24,11 +25,10 @@ public class SidePanel extends JPanel {
 	static JButton forward;
 	static JButton reverse;
 
-	
 	ButtonGroup radioButtonGroup;
-	
+
+	// constructor
 	public SidePanel() {
-		
 		radioButtonGroup = new ButtonGroup();
 		oneMonthRadioButton = new JRadioButton("1 Month");
 		threeMonthsRadioButton = new JRadioButton("3 Months");
@@ -67,6 +67,4 @@ public class SidePanel extends JPanel {
 		
 		add(sideGrid);
 	}
-	
-	
 }

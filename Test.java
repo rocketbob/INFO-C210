@@ -1,3 +1,5 @@
+// Group project for Bob Japundza, Perry Cameron, Dante Gearing
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -8,6 +10,7 @@ import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+// class that is used to test calendar controls
 public class Test extends JFrame implements ItemListener {
 	static JPanel calendarContainer;
 	private static final int GRAY = 1;
@@ -19,7 +22,7 @@ public class Test extends JFrame implements ItemListener {
     private ForwardButtonHandler fbHandler;
     private ReverseButtonHandler rbHandler;
     
-	
+	// constructor
 	public Test () {
 		fbHandler = new ForwardButtonHandler();  // forward button
 		rbHandler = new ReverseButtonHandler();
@@ -30,10 +33,9 @@ public class Test extends JFrame implements ItemListener {
         calendarContainer.setLayout(new BorderLayout());
         writeCalendar();
         setLayout(new BorderLayout());
-		sidePanel.setPreferredSize(new Dimension(200,800));
+		sidePanel.setPreferredSize(new Dimension(250,800));
 		sidePanel.setVisible(true);
         calendarContainer.setPreferredSize(new Dimension(800,800));
-        
         
         add(sidePanel, BorderLayout.LINE_START);
         add(calendarContainer, BorderLayout.CENTER);
@@ -46,16 +48,18 @@ public class Test extends JFrame implements ItemListener {
 		SidePanel.threeMonthsRadioButton.addItemListener(this);
 		SidePanel.twelveMonthsRadioButton.addItemListener(this);
 		SidePanel.monthListComboBox.addItemListener(this);
+		
 		// action listeners
 		SidePanel.forward.addActionListener(fbHandler);
 		SidePanel.reverse.addActionListener(rbHandler);
-		
 	}
 
+	// main entry point
 	public static void main(String[] args) {
 		Test thisTest = new Test();
 	}
 
+	// method to set up three calendar view
 	public static void threeCalendarView() {
 		calendarContainer.setLayout(new GridLayout(2,2));
 		for(int i = 0; i < 3; i++) {
@@ -70,11 +74,13 @@ public class Test extends JFrame implements ItemListener {
 		calendarContainer.add(new DayPanel("",0,GRAY));
 	}
 	
+	// method to set up single calendar view
 	public static void oneCalendarView() {
 		calendarContainer.setLayout(new BorderLayout());
 		calendarContainer.add(new CalendarPanel(monthSelected, NOBORDER, new GregorianCalendar(Test.yearSelected)), BorderLayout.CENTER);
 	}
 	
+	// method to set up full year view
 	public static void twelveCalendarView() {
 		calendarContainer.setLayout(new GridLayout(4,3));
 		for(int i = 0;i < 12; i++) {  
@@ -82,6 +88,7 @@ public class Test extends JFrame implements ItemListener {
 		}
 	}
 	
+	// does the work of displaying a calendar view
 	public static void writeCalendar() {
 		calendarContainer.removeAll();
 		switch(viewSelected) {
@@ -99,6 +106,7 @@ public class Test extends JFrame implements ItemListener {
 		System.out.println("Updating UI");  //temp
 	}
 	
+	// handles selections
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 		if(SidePanel.oneMonthRadioButton.isSelected()) {
@@ -114,6 +122,7 @@ public class Test extends JFrame implements ItemListener {
 		writeCalendar();
 	}
 
+	// handles month selection
 	public static void selectMonth() {
 		for(int i = 0; i < SidePanel.monthList.length ; i++) {
 			if(SidePanel.monthList[i].equals(SidePanel.monthListComboBox.getSelectedItem())) {
@@ -124,6 +133,7 @@ public class Test extends JFrame implements ItemListener {
 	}
 }
 
+// forward button handler
 class ForwardButtonHandler implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Test.yearSelected++;
@@ -133,6 +143,7 @@ class ForwardButtonHandler implements ActionListener {
 	}
 }
 
+// back button handler
 class ReverseButtonHandler implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Test.yearSelected--;

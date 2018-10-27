@@ -2,6 +2,8 @@
 
 Project files for INFO-C211 Calendar assignment.
 
+Test.java contains the main entry point for the progam.
+
 bug: eventlisteners in Test.java fire twice, whenever a radio button is selected
 or the drop down menu is selected. The causes the program to double it's work. Inside Test.java there are System.out.Print statements that show this.  The program works fine but in the real world this would be unacceptable overhead.
 
