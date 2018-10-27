@@ -1,4 +1,4 @@
-// Group project for Bob Japundza, Perry Cameron, Dante Gearing
+// Group project for Bob Japundza, Perry Cameron, Dante Gearring
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
