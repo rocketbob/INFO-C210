@@ -16,6 +16,9 @@ public class DayPanel extends JPanel {
 		if (color == 2) {  // color for current day
 			this.setBackground(Color.YELLOW);
 		}
+		if (color == 3) {
+			this.setBackground(Color.RED);
+		}
 		this.add(day);
 	}
 }
