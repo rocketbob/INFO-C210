@@ -13,6 +13,8 @@ public class CalendarPanel extends JPanel {
 	private static final int GRAY = 1;
 	private static final int LIGHTGRAY = 0;
 	private static final int YELLOW = 2;
+	private static final int RED = 3;
+	private static int offsetBlanks = 0;
 
 	// problem with September and December when offset is 6 it dosen't work?
 	public CalendarPanel (int month, int border, GregorianCalendar gCalendar) {
@@ -39,7 +41,11 @@ public class CalendarPanel extends JPanel {
 		}
 		for(int i=1;i<gCalendar.monthNumDays[month]+1;i++) {  // creates a panel for each day
 			if (gCalendar.currentDay == i && gCalendar.currentMonth == month+1 && gCalendar.currentYear == gCalendar.yearSelected) { 
-			tileContainer.add(new DayPanel("" + i,1,YELLOW));	
+			tileContainer.add(new DayPanel("" + i,1,YELLOW));
+			} else if((gCalendar.monthOffsets[month] + i) % 7 ==0) {
+			tileContainer.add(new DayPanel("" + i,1,RED));
+			} else if((gCalendar.monthOffsets[month] + i - 1) % 7 ==0) {
+			tileContainer.add(new DayPanel("" + i,1,RED));
 			} else {
 			tileContainer.add(new DayPanel("" + i,1,LIGHTGRAY));
 			}
