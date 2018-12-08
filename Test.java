@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -67,7 +68,7 @@ public class Test extends JFrame implements ItemListener {
 				calendarContainer.add(new CalendarPanel(monthSelected + i,BORDER, new GregorianCalendar(Test.yearSelected)));
 			}
 		}
-		calendarContainer.add(new DayPanel("",0,GRAY));
+		calendarContainer.add(new DayPanel("",0,Color.GRAY,new Theme(1).getPanelColor()));
 	}
 	
 	public static void oneCalendarView() {
