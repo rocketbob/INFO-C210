@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 
 public class Test extends JFrame implements ItemListener {
 	static JPanel calendarContainer;
-	private static final int GRAY = 1;
 	static int yearSelected = 2018;  // this will set the year for the calendar
 	static int monthSelected = 0;  // this will be the month of interest
 	static int viewSelected = 0;  // this will be the monthy view your calendar is on

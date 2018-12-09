@@ -26,7 +26,7 @@ public class CalendarPanel extends JPanel {
 		
 		
 		JLabel monthLabel = new JLabel(SidePanel.monthList[month]);
-		monthLabel.setForeground(Color.WHITE);
+		monthLabel.setForeground(new Theme(month).getTextColor());
 		monthLabel.setHorizontalAlignment(JLabel.CENTER);
 		
 		headingPanel.setBackground(new Theme(month).getBackGroundColor());
