@@ -1,6 +1,7 @@
 // Group project for Bob Japundza, Perry Cameron, Dante Gearring
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +14,6 @@ import javax.swing.JPanel;
 // class that is used to test calendar controls
 public class Test extends JFrame implements ItemListener {
 	static JPanel calendarContainer;
-	private static final int GRAY = 1;
 	static int yearSelected = 2018;  // this will set the year for the calendar
 	static int monthSelected = 0;  // this will be the month of interest
 	static int viewSelected = 0;  // this will be the monthy view your calendar is on
@@ -71,7 +71,7 @@ public class Test extends JFrame implements ItemListener {
 				calendarContainer.add(new CalendarPanel(monthSelected + i,BORDER, new GregorianCalendar(Test.yearSelected)));
 			}
 		}
-		calendarContainer.add(new DayPanel("",0,GRAY));
+		calendarContainer.add(new DayPanel("",0,Color.GRAY,new Theme(1).getPanelColor()));
 	}
 	
 	// method to set up single calendar view

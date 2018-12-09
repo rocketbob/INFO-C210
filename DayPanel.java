@@ -5,20 +5,12 @@ import javax.swing.JPanel;
 
 public class DayPanel extends JPanel {
 
-	public DayPanel(String string, int border, int color) {
+	public DayPanel(String string, int border, Color color,Color color2) {
 		JLabel day = new JLabel(string);
 		if (border > 0) { // adds boarder if told
-		this.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, border));
+		this.setBorder(BorderFactory.createLineBorder(color2, border));
 		}
-		if (color == 1) {  // normal color for tiles
-			this.setBackground(Color.GRAY);
-		}
-		if (color == 2) {  // color for current day
-			this.setBackground(Color.YELLOW);
-		}
-		if (color == 3) {
-			this.setBackground(Color.RED);
-		}
+		this.setBackground(color);
 		this.add(day);
 	}
 }
